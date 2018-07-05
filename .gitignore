@@ -1,0 +1,15 @@
+.DS_Store
+template/node_modules/
+template/package-lock.json
+template/npm-debug.log*
+template/yarn-debug.log*
+template/yarn-error.log*
+template/.DS_Store
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
