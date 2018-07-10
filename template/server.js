@@ -11,15 +11,20 @@ const log = require('./middleware/log');
 const path = require('path');
 const chalk = require('chalk');
 const app = new Koa();
-let port = 8765;
+const config = require('./config');
+let port = config.port || 8765;
 
 app.use(compose([
     log.responseTime,
     log.logger,
     bodyParser(),
     koaStatic(path.resolve(__dirname, './dist')),
-    router.routes(),router.allowedMethods(),
+    router.routes(), router.allowedMethods(),
 ]));
 
-app.listen(port);
+app.on('error', function (err) {
+    chalk.red(err)
+});
+
+app.listen(config);
 console.log(chalk.cyan(`\nserver start http://localhost:${port}\n`));

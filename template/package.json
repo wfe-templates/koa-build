@@ -5,8 +5,8 @@
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js",
-        "dev": "supervisor -- server.js --dev"
+        "start": "node server.js --build",
+        "dev": "supervisor server.js"
     },
     "author": "busyhe",
     "license": "ISC",
@@ -32,5 +32,9 @@
     },
     "devDependencies": {
         "supervisor": "^0.12.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/wfe-templates/koa-build.git"
     }
 }

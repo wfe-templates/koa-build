@@ -10,5 +10,6 @@ module.exports =  async (ctx, next) => {
         ctx.response.body = {
             message: err.message
         };
+        ctx.app.emit('error', err, ctx);
     }
 };
