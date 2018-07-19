@@ -12,7 +12,7 @@ const path = require('path');
 const chalk = require('chalk');
 const app = new Koa();
 const config = require('./config');
-let port = config.port || 8765;
+let port = config.port;
 
 app.use(compose([
     log.responseTime,
