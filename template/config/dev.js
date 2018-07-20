@@ -4,4 +4,14 @@
  * dev
  */
 module.exports = {
+    mysql: {
+        host: 'localhost',
+        user: 'root',
+        database: 'test',
+        password: 'busyhe317',
+        port: 3306
+    },
+    mongodb: {
+        url: 'mongodb://localhost:27017/test'
+    }
 };

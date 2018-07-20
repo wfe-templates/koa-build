@@ -5,6 +5,6 @@
 const router = require('koa-router')();
 const homeController = require('../controllers/home');
 
-router.post('/', homeController.index);
+router.get('/', homeController.index);
 
 module.exports = router;

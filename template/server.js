@@ -10,6 +10,7 @@ const router = require('./routers/index');
 const log = require('./middleware/log');
 const path = require('path');
 const chalk = require('chalk');
+const Console = require('./common/console');
 const app = new Koa();
 const config = require('./config');
 let port = config.port;
@@ -18,7 +19,7 @@ app.use(compose([
     log.responseTime,
     log.logger,
     bodyParser(),
-    koaStatic(path.resolve(__dirname, './dist')),
+    koaStatic(path.resolve(__dirname, './public')),
     router.routes(), router.allowedMethods(),
 ]));
 
@@ -26,5 +27,7 @@ app.on('error', function (err) {
     chalk.red(err)
 });
 
+module.exports = app;
+
 app.listen(config);
-console.log(chalk.cyan(`\nserver start http://localhost:${port}\n`));
+Console.customList(`cyan@\nserver start http://localhost:${port}\n`);

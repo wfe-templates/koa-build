@@ -4,5 +4,11 @@
  * build
  */
 module.exports = {
-
+    mysql: {
+        host: 'localhost',
+        user: 'root',
+        database: 'test',
+        password : 'busyhe317',
+        port: 3306
+    }
 };
