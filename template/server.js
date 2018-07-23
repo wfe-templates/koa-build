@@ -7,7 +7,8 @@ const bodyParser = require('koa-body');
 const koaStatic = require('koa-static');
 const compose = require('koa-compose');
 const router = require('./routers/index');
-const log = require('./middleware/log');
+const errorMiddleware = require('./middleware/error');
+const logMiddleware = require('./middleware/log');
 const path = require('path');
 const chalk = require('chalk');
 const Console = require('./common/console');
@@ -16,15 +17,16 @@ const config = require('./config');
 let port = config.port;
 
 app.use(compose([
-    log.responseTime,
-    log.logger,
+    errorMiddleware,
+    logMiddleware.responseTime,
+    logMiddleware.logger,
     bodyParser(),
     koaStatic(path.resolve(__dirname, './public')),
     router.routes(), router.allowedMethods(),
 ]));
 
 app.on('error', function (err) {
-    chalk.red(err)
+    console.error(err)
 });
 
 module.exports = app;

@@ -7,7 +7,7 @@
 const chalk = require('chalk');
 
 module.exports = {
-    default() {
+    default(msg) {
         console.log(chalk.gray(msg))
     },
     log(msg) {
