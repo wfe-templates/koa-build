@@ -4,8 +4,6 @@
  */
 const commander = require('../common/commander');
 const config = commander.build ? require('./build') : require('./dev');
-const dev = require('./dev');
-const build = require('./build');
 
 const commmonConfig = {
     type: commander.build ? 'build' : 'dev',

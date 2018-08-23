@@ -5,11 +5,10 @@
 
 const Router = require('koa-router');
 const home = require('./home');
-const router = new Router();
-
-router.get('/', async (ctx) => {
-    ctx.body = 'server starting'
+const router = new Router({
+    prefix: '/api'
 });
-router.use('/api/home', home.routes(), home.allowedMethods());
+
+router.use('/home', home.routes(), home.allowedMethods());
 
 module.exports = router;
