@@ -13,29 +13,29 @@ const path = require('path');
 const Console = require('./common/console');
 const app = new Koa();
 const config = require('./config');
-let port = config.port;
+
+app.use(bodyParser({
+    multipart: true,
+    formLimit: '10mb',
+    jsonLimit: '10mb',
+    textLimit: '10mb'
+}));
 
 app.use(compose([
     errorMiddleware,
     logMiddleware.responseTime,
-    logMiddleware.logger,
-    bodyParser(),
-    koaStatic(path.resolve(__dirname, './public')),
-    router.routes(), router.allowedMethods(),
+    logMiddleware.logger
 ]));
 
-app.on('error', function (err) {
-    console.error(err)
+app.use(koaStatic(path.resolve(__dirname, './public')));
+app.use(router.routes(), router.allowedMethods());
+
+app.use(async ctx => {
+    ctx.body = 'server start';
 });
 
-module.exports = app;
-
 app.listen(config);
-Console.customList([
-    ['cyan', '\n> server start: '],
-    ['green', `http://localhost:${config.port}`]
-]);
-Console.customList([
-    ['cyan', '> 当前服务环境: '],
-    ['green', `${config.type}\n`]
-]);
+Console.customList([['cyan', '\n> server start: '], ['green', `http://localhost:${config.port}`]]);
+Console.customList([['cyan', '> 当前服务环境: '], ['green', `${config.type}\n`]]);
+
+module.exports = app;
