@@ -25,19 +25,13 @@ module.exports = {
     custom(type, msg) {
         console.log(chalk[type], msg)
     },
-    /**
-     * 多种颜色
-     * type@msg@@type@msg
-     * @ 分割type和message
-     * @@ 分割不同类型
-     * @param msgs
-     */
     customList(msgs) {
         let msgVal = '';
-        let msgList = msgs.split('@@');
-        msgList.forEach(item => {
-            let itemMsg = item.split('@');
-            msgVal += chalk[itemMsg[0]](itemMsg[1]);
+        if (msgs.length === 0) {
+            return
+        }
+        msgs.forEach(item => {
+            msgVal += chalk[item[0]](item[1]);
         });
         console.log(msgVal)
     }

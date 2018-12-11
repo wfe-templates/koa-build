@@ -10,7 +10,6 @@ const router = require('./routers/index');
 const errorMiddleware = require('./middleware/error');
 const logMiddleware = require('./middleware/log');
 const path = require('path');
-const chalk = require('chalk');
 const Console = require('./common/console');
 const app = new Koa();
 const config = require('./config');
@@ -32,4 +31,11 @@ app.on('error', function (err) {
 module.exports = app;
 
 app.listen(config);
-Console.customList(`cyan@\nserver start http://localhost:${port}\n`);
+Console.customList([
+    ['cyan', '\n> server start: '],
+    ['green', `http://localhost:${config.port}`]
+]);
+Console.customList([
+    ['cyan', '> 当前服务环境: '],
+    ['green', `${config.type}\n`]
+]);

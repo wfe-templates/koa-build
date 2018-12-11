@@ -19,6 +19,17 @@ axios.defaults.timeout = 10000;
 // 请求拦截
 axios.interceptors.request.use(config => {
     start = new Date();
+    Console.customList([
+        ['gray', `[ ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ]`],
+        ['magenta', ` [ server ]`],
+        ['green', `${config.method} ${config.url} `]
+    ]);
+    if (config.method === 'post') {
+        Console.customList([
+            ['green', `res: `],
+            ['gray', JSON.stringify(config.data)]
+        ]);
+    }
     return config
 }, error => {
     Console.danger(error);
@@ -29,11 +40,16 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(function (response) {
     end = new Date() - start;
     const config = response.config;
-    Console.customList(`gray@[ ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ]@@magenta@ [ server ]@@${response.status === 200 ? 'green' : 'red'}@ ${response.status} ${config.method} ${config.url} @@yellow@ ${end}ms`)
-    Console.default('--------------------------');
-    Console.customList(`green@req: @@gray@${JSON.stringify(config.data)}`);
-    Console.customList(`green@res: @@gray@${JSON.stringify(response.data)}`);
-    Console.default('--------------------------');
+    Console.customList([
+        ['gray', `[ ${dayjs().format('YYYY-MM-DD HH:mm:ss')} ]`],
+        ['magenta', ` [ server ]`],
+        [response.status === 200 ? 'green' : 'red', ` ${response.status} ${config.method} ${config.url} `],
+        ['yellow', ` ${end}ms`]
+    ]);
+    Console.customList([
+        ['green', `res: `],
+        ['gray', JSON.stringify(response.data)]
+    ]);
     return response;
 }, function (error) {
     Console.danger(error);
