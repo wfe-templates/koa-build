@@ -14,12 +14,12 @@ module.exports = {
         type: 'string',
         message: 'Author',
     },
-    usedb: {
+    db: {
         type: 'confirm',
         message: 'Use db to your server',
     },
-    db: {
-        when: 'use_db',
+    dbConfig: {
+        when: 'db',
         type: 'list',
         message: 'select db',
         choices: [
@@ -42,8 +42,8 @@ module.exports = {
     },
     filters: {
         // 'db/**/*': "use_db",
-        'db/mongodb/**/*': "use_db && db === 'mongodb'",
-        'db/mysql/**/*': "use_db && db === 'mysql'"
+        'db/mongodb/**/*': "db && dbConfig === 'mongodb'",
+        'db/mysql/*': "db && dbConfig === 'mysql'"
     },
     completeMessage: 'To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack'
 };
