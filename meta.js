@@ -14,9 +14,9 @@ module.exports = {
         type: 'string',
         message: 'Author',
     },
-    use_db: {
+    usedb: {
         type: 'confirm',
-        message: '是否使用数据库',
+        message: 'Use db to your server',
     },
     db: {
         when: 'use_db',
@@ -41,8 +41,9 @@ module.exports = {
         ]
     },
     filters: {
-        'db/**/*': "use_db",
+        // 'db/**/*': "use_db",
         'db/mongodb/**/*': "use_db && db === 'mongodb'",
         'db/mysql/**/*': "use_db && db === 'mysql'"
-    }
+    },
+    completeMessage: 'To get started:\n\n  {{^inPlace}}cd {{destDirName}}\n  {{/inPlace}}npm install\n  npm run dev\n\nDocumentation can be found at https://vuejs-templates.github.io/webpack'
 };
