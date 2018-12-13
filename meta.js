@@ -9,7 +9,7 @@ module.exports = {
             type: 'string',
             required: false,
             message: 'Project description',
-            default: 'A Vue.js project',
+            default: 'A Koa2 project',
         },
         author: {
             type: 'string',
@@ -39,7 +39,8 @@ module.exports = {
     },
     filters: {
         'db/mongodb/**/*': "db && dbConfig === 'mongodb'",
-        'db/mysql/*': "db && dbConfig === 'mysql'"
+        'db/mysql/*': "db && dbConfig === 'mysql'",
+        'init/../*': "db && dbConfig === 'mysql'"
     },
     completeMessage: 'To get started:\n\n  npm run dev'
 };

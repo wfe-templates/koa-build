@@ -4,6 +4,7 @@
  * build
  */
 module.exports = {
+    {{#if_eq dbConfig "mysql"}}
     mysql: {
         host: 'localhost',
         user: 'root',
@@ -11,7 +12,10 @@ module.exports = {
         password : 'busyhe317',
         port: 3306
     },
+    {{/if_eq}}
+    {{#if_eq lintConfig "mongodb"}}
     mongodb: {
         url: 'mongodb://localhost:27017/test'
     }
+    {{/if_eq}}
 };
