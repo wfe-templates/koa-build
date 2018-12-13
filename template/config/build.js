@@ -11,7 +11,8 @@ module.exports = {
         database: 'test',
         password : 'busyhe317',
         port: 3306
-    }{{/if_eq}},
+    }
+    {{/if_eq}}
     {{#if_eq lintConfig "mongodb"}}
     mongodb: {
         url: 'mongodb://localhost:27017/test'
