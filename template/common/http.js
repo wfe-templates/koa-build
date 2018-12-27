@@ -26,8 +26,13 @@ axios.interceptors.request.use(config => {
     ]);
     if (config.method === 'post') {
         Console.customList([
-            ['green', `res: `],
+            ['green', `server_req: `],
             ['gray', JSON.stringify(config.data)]
+        ]);
+    } else if (config.method === 'get') {
+        Console.customList([
+            ['green', `server_req: `],
+            ['gray', JSON.stringify(config.params)]
         ]);
     }
     return config
@@ -47,7 +52,7 @@ axios.interceptors.response.use(function (response) {
         ['yellow', ` ${end}ms`]
     ]);
     Console.customList([
-        ['green', `res: `],
+        ['green', `server_res: `],
         ['gray', JSON.stringify(response.data)]
     ]);
     return response;

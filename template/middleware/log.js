@@ -21,12 +21,12 @@ exports.logger = async (ctx, next) => {
     ]);
     if (ctx.method === 'GET') {
         Console.customList([
-            ['green', `req: `],
+            ['green', `api_req: `],
             ['gray', JSON.stringify(ctx.request.query)]
         ]);
     } else {
         Console.customList([
-            ['green', `req: `],
+            ['green', `api_req: `],
             ['gray', JSON.stringify(ctx.request.body)]
         ]);
     }
@@ -43,7 +43,7 @@ exports.logger = async (ctx, next) => {
     ]);
     if (ctx.url.indexOf('api') >= 0) {
         Console.customList([
-            ['green', `res: `],
+            ['green', `api_res: `],
             ['gray', JSON.stringify(ctx.response.body)]
         ]);
     }
