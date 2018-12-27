@@ -14,21 +14,15 @@ const status = {
             ctx.body = Object.assign({}, successData, data)
         }
     },
-    warning(ctx, msg) {
-        ctx.body = {
-            status: 1,
-            message: msg
-        }
-    },
     error(ctx, msg) {
         ctx.body = {
-            status: 2,
-            message: msg
+            status: 1,
+            message: msg || '服务出错'
         }
     },
     noLogin(ctx) {
         ctx.body = {
-            status: 3,
+            status: 2,
             message: '未登录'
         }
     }

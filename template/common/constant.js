@@ -13,5 +13,13 @@ module.exports = {
     {{/if_eq}}
     server: {
         SERVER_ERROR: '请求服务器失败'
+    },
+    /**
+     * 请求参数校验
+     * @param key 参数
+     * @returns {string}
+     */
+    keyRequired(key) {
+        return `${key} required !`
     }
 };
