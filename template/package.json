@@ -1,7 +1,8 @@
 {
-    "name": "koa-build",
+    "name": "{{ name }}",
+    "author": "{{ author }}",
+    "description": "{{ description }}",
     "version": "1.0.0",
-    "description": "koa 后端服务模板",
     "main": "server.js",
     "scripts": {
         "initdb": "node ./init/index.js",
