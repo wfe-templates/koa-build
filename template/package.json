@@ -31,12 +31,16 @@
         "koa-compose": "^4.1.0",
         "koa-logger": "^3.2.0",
         "koa-router": "^7.4.0",
-        "koa-static": "^5.0.0",
-        "mongoose": "^5.2.4"
+        {{#if_eq dbConfig "mongodb"}}
+        "mongoose": "^5.2.4",
+        {{/if_eq}}
+        "koa-static": "^5.0.0"
     },
     "devDependencies": {
         "jasmine": "^3.1.0",
+        {{#if_eq dbConfig "mysql"}}
         "mysql": "^2.16.0",
+        {{/if_eq}}
         "nodemon": "^1.18.3",
         "supertest": "^3.1.0"
     },
